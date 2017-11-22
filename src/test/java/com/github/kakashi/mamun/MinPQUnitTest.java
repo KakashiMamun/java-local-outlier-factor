@@ -1,4 +1,4 @@
-package com.github.chen0040.lof;
+package com.github.kakashi.mamun;
 
 
 import com.github.chen0040.data.utils.TupleTwo;
@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.testng.Assert.*;
 
 
 /**

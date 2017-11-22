@@ -1,4 +1,4 @@
-package com.github.chen0040.lof;
+package com.github.kakashi.mamun;
 
 
 import com.github.chen0040.data.evaluators.BinaryClassifierEvaluator;
@@ -15,9 +15,9 @@ import java.util.Random;
 /**
  * Created by xschen on 19/5/2017.
  */
-public class LDOFUnitTest {
+public class LOFUnitTest {
 
-   private static final Logger logger = LoggerFactory.getLogger(LDOFUnitTest.class);
+   private static final Logger logger = LoggerFactory.getLogger(LOFUnitTest.class);
 
    private static Random random = new Random();
 
@@ -66,14 +66,18 @@ public class LDOFUnitTest {
 
       System.out.println(data.head(10));
 
-      LDOF method = new LDOF();
+      LOF method = new LOF();
+      method.setParallel(true);
+      method.setMinPtsLB(3);
+      method.setMinPtsUB(10);
+      method.setThreshold(0.5);
       DataFrame learnedData = method.fitAndTransform(data);
 
       BinaryClassifierEvaluator evaluator = new BinaryClassifierEvaluator();
-      for(int i = 0; i < learnedData.rowCount(); ++i) {
+
+      for(int i = 0; i < learnedData.rowCount(); ++i){
          boolean predicted = learnedData.row(i).categoricalTarget().equals("1");
          boolean actual = data.row(i).target() == 1.0;
-
          evaluator.evaluate(actual, predicted);
          logger.info("predicted: {}\texpected: {}", predicted, actual);
       }

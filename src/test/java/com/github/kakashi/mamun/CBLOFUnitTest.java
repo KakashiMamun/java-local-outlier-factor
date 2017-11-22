@@ -1,4 +1,4 @@
-package com.github.chen0040.lof;
+package com.github.kakashi.mamun;
 
 
 import com.github.chen0040.data.evaluators.BinaryClassifierEvaluator;
@@ -13,11 +13,11 @@ import java.util.Random;
 
 
 /**
- * Created by xschen on 19/5/2017.
+ * Created by xschen on 21/5/2017.
  */
-public class LOFUnitTest {
+public class CBLOFUnitTest {
 
-   private static final Logger logger = LoggerFactory.getLogger(LOFUnitTest.class);
+   private static final Logger logger = LoggerFactory.getLogger(CBLOFUnitTest.class);
 
    private static Random random = new Random();
 
@@ -61,16 +61,14 @@ public class LOFUnitTest {
 
       DataFrame data = schema.build();
 
-      data = negativeSampler.sample(data, 20);
-      data = positiveSampler.sample(data, 20);
+      data = negativeSampler.sample(data, 200);
+      data = positiveSampler.sample(data, 200);
 
       System.out.println(data.head(10));
 
-      LOF method = new LOF();
-      method.setParallel(true);
-      method.setMinPtsLB(3);
-      method.setMinPtsUB(10);
-      method.setThreshold(0.5);
+
+      CBLOF method = new CBLOF();
+      method.setParallel(false);
       DataFrame learnedData = method.fitAndTransform(data);
 
       BinaryClassifierEvaluator evaluator = new BinaryClassifierEvaluator();
